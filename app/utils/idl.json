@@ -1,0 +1,754 @@
+{
+  "address": "9yXJnsBoXjtymPsBmAesDcDZTh7M2RPfataHbi8Rsxip",
+  "metadata": {
+    "name": "game_engine",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "attack_player",
+      "discriminator": [
+        204,
+        207,
+        73,
+        170,
+        216,
+        244,
+        173,
+        255
+      ],
+      "accounts": [
+        {
+          "name": "attacker",
+          "writable": true
+        },
+        {
+          "name": "defender",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "buy_mystery_box",
+      "discriminator": [
+        150,
+        161,
+        180,
+        220,
+        54,
+        128,
+        128,
+        242
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim_quest",
+      "discriminator": [
+        38,
+        197,
+        33,
+        123,
+        0,
+        108,
+        206,
+        161
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "quest_id",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "craft_item",
+      "discriminator": [
+        196,
+        249,
+        129,
+        219,
+        148,
+        234,
+        223,
+        222
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "item",
+          "type": {
+            "defined": {
+              "name": "ItemType"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_alliance",
+      "discriminator": [
+        201,
+        92,
+        183,
+        64,
+        131,
+        82,
+        174,
+        203
+      ],
+      "accounts": [
+        {
+          "name": "alliance",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  108,
+                  108,
+                  105,
+                  97,
+                  110,
+                  99,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "deposit_resources",
+      "discriminator": [
+        86,
+        149,
+        243,
+        159,
+        58,
+        9,
+        191,
+        226
+      ],
+      "accounts": [
+        {
+          "name": "alliance",
+          "writable": true
+        },
+        {
+          "name": "player",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "amount_wood",
+          "type": "u64"
+        },
+        {
+          "name": "amount_iron",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "harvest_resources",
+      "discriminator": [
+        232,
+        189,
+        237,
+        198,
+        103,
+        127,
+        115,
+        57
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "init_game",
+      "discriminator": [
+        251,
+        46,
+        12,
+        208,
+        184,
+        148,
+        157,
+        73
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "max_x",
+          "type": "u32"
+        },
+        {
+          "name": "max_y",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "init_player",
+      "discriminator": [
+        114,
+        27,
+        219,
+        144,
+        50,
+        15,
+        228,
+        66
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "writable": true
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game"
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "username",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "join_alliance",
+      "discriminator": [
+        237,
+        35,
+        212,
+        158,
+        181,
+        98,
+        153,
+        166
+      ],
+      "accounts": [
+        {
+          "name": "alliance",
+          "writable": true
+        },
+        {
+          "name": "player",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "move_player",
+      "discriminator": [
+        17,
+        58,
+        68,
+        221,
+        186,
+        117,
+        140,
+        231
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "writable": true
+        },
+        {
+          "name": "player",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "new_x",
+          "type": "u32"
+        },
+        {
+          "name": "new_y",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "toggle_game_state",
+      "discriminator": [
+        191,
+        65,
+        244,
+        241,
+        155,
+        217,
+        85,
+        167
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Alliance",
+      "discriminator": [
+        80,
+        135,
+        160,
+        6,
+        114,
+        44,
+        211,
+        15
+      ]
+    },
+    {
+      "name": "Game",
+      "discriminator": [
+        27,
+        90,
+        166,
+        125,
+        74,
+        100,
+        121,
+        18
+      ]
+    },
+    {
+      "name": "Player",
+      "discriminator": [
+        205,
+        222,
+        112,
+        7,
+        165,
+        155,
+        206,
+        218
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "UsernameTooLong",
+      "msg": "Username cannot be more than 20 characters."
+    },
+    {
+      "code": 6001,
+      "name": "OutOfBounds",
+      "msg": "Coordinates are out of bounds."
+    },
+    {
+      "code": 6002,
+      "name": "InsufficientFunds",
+      "msg": "Not enough resources."
+    },
+    {
+      "code": 6003,
+      "name": "NotEnoughEnergy",
+      "msg": "You don't have enough energy to travel that far."
+    },
+    {
+      "code": 6004,
+      "name": "Unauthorized",
+      "msg": "You are not the owner of this player account."
+    },
+    {
+      "code": 6005,
+      "name": "HarvestTooSoon",
+      "msg": "Wait at least 10 seconds between harvests."
+    },
+    {
+      "code": 6006,
+      "name": "CannotAttackSelf",
+      "msg": "You cannot attack yourself."
+    },
+    {
+      "code": 6007,
+      "name": "TargetOutOfRange",
+      "msg": "Target is too far away. Move closer."
+    },
+    {
+      "code": 6008,
+      "name": "NameTooLong",
+      "msg": "Alliance name is too long."
+    },
+    {
+      "code": 6009,
+      "name": "AlreadyInAlliance",
+      "msg": "You are already in an alliance."
+    },
+    {
+      "code": 6010,
+      "name": "AllianceFull",
+      "msg": "This alliance is full."
+    },
+    {
+      "code": 6011,
+      "name": "NotInThisAlliance",
+      "msg": "You are not a member of this alliance."
+    },
+    {
+      "code": 6012,
+      "name": "MaxLevelReached",
+      "msg": "Maximum upgrade level reached."
+    },
+    {
+      "code": 6013,
+      "name": "QuestNotCompleted",
+      "msg": "Quest requirements not met."
+    },
+    {
+      "code": 6014,
+      "name": "RewardAlreadyClaimed",
+      "msg": "Reward already claimed for today."
+    },
+    {
+      "code": 6015,
+      "name": "InvalidQuestId",
+      "msg": "Invalid Quest ID."
+    }
+  ],
+  "types": [
+    {
+      "name": "Alliance",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "leader",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "total_members",
+            "type": "u64"
+          },
+          {
+            "name": "wood_treasury",
+            "type": "u64"
+          },
+          {
+            "name": "iron_treasury",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Game",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "game_id",
+            "type": "u64"
+          },
+          {
+            "name": "total_players",
+            "type": "u64"
+          },
+          {
+            "name": "max_x",
+            "type": "u32"
+          },
+          {
+            "name": "max_y",
+            "type": "u32"
+          },
+          {
+            "name": "is_paused",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ItemType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "TitaniumHull"
+          },
+          {
+            "name": "LaserCannon"
+          },
+          {
+            "name": "WarpEngine"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Player",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "name": "alliance_key",
+            "type": "pubkey"
+          },
+          {
+            "name": "wood",
+            "type": "u64"
+          },
+          {
+            "name": "iron",
+            "type": "u64"
+          },
+          {
+            "name": "gold",
+            "type": "u64"
+          },
+          {
+            "name": "energy",
+            "type": "u64"
+          },
+          {
+            "name": "level",
+            "type": "u8"
+          },
+          {
+            "name": "xp",
+            "type": "u64"
+          },
+          {
+            "name": "health",
+            "type": "u8"
+          },
+          {
+            "name": "x",
+            "type": "u32"
+          },
+          {
+            "name": "y",
+            "type": "u32"
+          },
+          {
+            "name": "last_login",
+            "type": "i64"
+          },
+          {
+            "name": "hull_level",
+            "type": "u8"
+          },
+          {
+            "name": "cannon_level",
+            "type": "u8"
+          },
+          {
+            "name": "engine_level",
+            "type": "u8"
+          },
+          {
+            "name": "total_battles_won",
+            "type": "u64"
+          },
+          {
+            "name": "daily_mined",
+            "type": "u64"
+          },
+          {
+            "name": "daily_battles",
+            "type": "u64"
+          },
+          {
+            "name": "last_quest_reset",
+            "type": "i64"
+          },
+          {
+            "name": "quest_flags",
+            "type": "u8"
+          },
+          {
+            "name": "achievements",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ]
+}
