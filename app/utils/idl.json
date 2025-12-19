@@ -9,16 +9,7 @@
   "instructions": [
     {
       "name": "attack_player",
-      "discriminator": [
-        204,
-        207,
-        73,
-        170,
-        216,
-        244,
-        173,
-        255
-      ],
+      "discriminator": [204, 207, 73, 170, 216, 244, 173, 255],
       "accounts": [
         {
           "name": "attacker",
@@ -37,16 +28,7 @@
     },
     {
       "name": "buy_mystery_box",
-      "discriminator": [
-        150,
-        161,
-        180,
-        220,
-        54,
-        128,
-        128,
-        242
-      ],
+      "discriminator": [150, 161, 180, 220, 54, 128, 128, 242],
       "accounts": [
         {
           "name": "player",
@@ -61,16 +43,7 @@
     },
     {
       "name": "claim_quest",
-      "discriminator": [
-        38,
-        197,
-        33,
-        123,
-        0,
-        108,
-        206,
-        161
-      ],
+      "discriminator": [38, 197, 33, 123, 0, 108, 206, 161],
       "accounts": [
         {
           "name": "player",
@@ -90,16 +63,7 @@
     },
     {
       "name": "craft_item",
-      "discriminator": [
-        196,
-        249,
-        129,
-        219,
-        148,
-        234,
-        223,
-        222
-      ],
+      "discriminator": [196, 249, 129, 219, 148, 234, 223, 222],
       "accounts": [
         {
           "name": "player",
@@ -123,16 +87,7 @@
     },
     {
       "name": "create_alliance",
-      "discriminator": [
-        201,
-        92,
-        183,
-        64,
-        131,
-        82,
-        174,
-        203
-      ],
+      "discriminator": [201, 92, 183, 64, 131, 82, 174, 203],
       "accounts": [
         {
           "name": "alliance",
@@ -141,16 +96,7 @@
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  97,
-                  108,
-                  108,
-                  105,
-                  97,
-                  110,
-                  99,
-                  101
-                ]
+                "value": [97, 108, 108, 105, 97, 110, 99, 101]
               },
               {
                 "kind": "arg",
@@ -182,16 +128,7 @@
     },
     {
       "name": "deposit_resources",
-      "discriminator": [
-        86,
-        149,
-        243,
-        159,
-        58,
-        9,
-        191,
-        226
-      ],
+      "discriminator": [86, 149, 243, 159, 58, 9, 191, 226],
       "accounts": [
         {
           "name": "alliance",
@@ -219,16 +156,7 @@
     },
     {
       "name": "harvest_resources",
-      "discriminator": [
-        232,
-        189,
-        237,
-        198,
-        103,
-        127,
-        115,
-        57
-      ],
+      "discriminator": [232, 189, 237, 198, 103, 127, 115, 57],
       "accounts": [
         {
           "name": "player",
@@ -243,16 +171,7 @@
     },
     {
       "name": "init_game",
-      "discriminator": [
-        251,
-        46,
-        12,
-        208,
-        184,
-        148,
-        157,
-        73
-      ],
+      "discriminator": [251, 46, 12, 208, 184, 148, 157, 73],
       "accounts": [
         {
           "name": "game",
@@ -261,19 +180,7 @@
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  103,
-                  97,
-                  109,
-                  101,
-                  95,
-                  103,
-                  108,
-                  111,
-                  98,
-                  97,
-                  108
-                ]
+                "value": [103, 97, 109, 101, 95, 103, 108, 111, 98, 97, 108]
               }
             ]
           }
@@ -301,16 +208,7 @@
     },
     {
       "name": "init_player",
-      "discriminator": [
-        114,
-        27,
-        219,
-        144,
-        50,
-        15,
-        228,
-        66
-      ],
+      "discriminator": [114, 27, 219, 144, 50, 15, 228, 66],
       "accounts": [
         {
           "name": "game",
@@ -323,14 +221,7 @@
             "seeds": [
               {
                 "kind": "const",
-                "value": [
-                  112,
-                  108,
-                  97,
-                  121,
-                  101,
-                  114
-                ]
+                "value": [112, 108, 97, 121, 101, 114]
               },
               {
                 "kind": "account",
@@ -362,16 +253,7 @@
     },
     {
       "name": "join_alliance",
-      "discriminator": [
-        237,
-        35,
-        212,
-        158,
-        181,
-        98,
-        153,
-        166
-      ],
+      "discriminator": [237, 35, 212, 158, 181, 98, 153, 166],
       "accounts": [
         {
           "name": "alliance",
@@ -390,16 +272,7 @@
     },
     {
       "name": "move_player",
-      "discriminator": [
-        17,
-        58,
-        68,
-        221,
-        186,
-        117,
-        140,
-        231
-      ],
+      "discriminator": [17, 58, 68, 221, 186, 117, 140, 231],
       "accounts": [
         {
           "name": "game",
@@ -427,16 +300,7 @@
     },
     {
       "name": "toggle_game_state",
-      "discriminator": [
-        191,
-        65,
-        244,
-        241,
-        155,
-        217,
-        85,
-        167
-      ],
+      "discriminator": [191, 65, 244, 241, 155, 217, 85, 167],
       "accounts": [
         {
           "name": "game",
@@ -445,9 +309,7 @@
         {
           "name": "admin",
           "signer": true,
-          "relations": [
-            "game"
-          ]
+          "relations": ["game"]
         }
       ],
       "args": []
@@ -456,42 +318,15 @@
   "accounts": [
     {
       "name": "Alliance",
-      "discriminator": [
-        80,
-        135,
-        160,
-        6,
-        114,
-        44,
-        211,
-        15
-      ]
+      "discriminator": [80, 135, 160, 6, 114, 44, 211, 15]
     },
     {
       "name": "Game",
-      "discriminator": [
-        27,
-        90,
-        166,
-        125,
-        74,
-        100,
-        121,
-        18
-      ]
+      "discriminator": [27, 90, 166, 125, 74, 100, 121, 18]
     },
     {
       "name": "Player",
-      "discriminator": [
-        205,
-        222,
-        112,
-        7,
-        165,
-        155,
-        206,
-        218
-      ]
+      "discriminator": [205, 222, 112, 7, 165, 155, 206, 218]
     }
   ],
   "errors": [
