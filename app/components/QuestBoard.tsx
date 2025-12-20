@@ -1,10 +1,12 @@
 "use client";
 
 import { useGame } from "../hooks/useGame";
+import { useGameSound } from "../hooks/useGameSound";
 import { Scroll, Gift, Lock, CheckCircle } from "lucide-react";
 
 export default function QuestBoard() {
   const { playerData, claimQuest, buyMysteryBox, loading } = useGame();
+  const { playHover } = useGameSound();
 
   if (!playerData) return null;
   const quests = [
@@ -67,6 +69,7 @@ export default function QuestBoard() {
               <button
                 onClick={() => claimQuest(quest.id)}
                 disabled={!quest.completed || loading}
+                onMouseEnter={() => playHover()}
                 className={`
                                     px-4 py-1 rounded text-xs font-bold uppercase
                                     ${
@@ -82,8 +85,6 @@ export default function QuestBoard() {
           </div>
         ))}
       </div>
-
-      {/* Mystery Box Section */}
       <div className="mt-8 border-t border-gray-800 pt-6">
         <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 p-6 rounded-xl border border-purple-500/30 text-center relative overflow-hidden group">
           <div className="absolute inset-0 bg-purple-500/5 group-hover:bg-purple-500/10 transition-all"></div>
@@ -96,6 +97,7 @@ export default function QuestBoard() {
           <button
             onClick={() => buyMysteryBox()}
             disabled={loading}
+            onMouseEnter={() => playHover()}
             className="bg-purple-600 hover:bg-purple-500 text-white px-8 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(147,51,234,0.5)] hover:shadow-[0_0_30px_rgba(147,51,234,0.7)] transition-all transform hover:scale-105"
           >
             OPEN FOR 5 GOLD

@@ -28,7 +28,6 @@ export function useGame() {
     return new Program<GameEngine>(idl as any, provider);
   }, [connection, wallet]);
 
-
   const fetchGameData = useCallback(async () => {
     if (!program) return;
     try {
@@ -110,7 +109,14 @@ export function useGame() {
       console.log("Init Game Tx:", tx);
       await fetchGameData();
       alert("Universe Initialized!");
-    } catch (error) {
+    } catch (error: any) {
+      if (
+        error.message?.includes("rejected") ||
+        error.toString().includes("User rejected")
+      ) {
+        console.log("Transaction cancelled by user");
+        return;
+      }
       console.error("Init Game Error:", error);
       alert("Failed to Init Game");
     } finally {
@@ -141,7 +147,14 @@ export function useGame() {
 
       console.log("Init Player Tx:", tx);
       await fetchPlayer();
-    } catch (error) {
+    } catch (error: any) {
+      if (
+        error.message?.includes("rejected") ||
+        error.toString().includes("User rejected")
+      ) {
+        console.log("Transaction cancelled by user");
+        return;
+      }
       console.error("Init Player Error:", error);
       alert("Registration Failed (Check Console)");
     } finally {
@@ -171,7 +184,14 @@ export function useGame() {
 
       console.log("Move Player Tx:", tx);
       await fetchPlayer();
-    } catch (error) {
+    } catch (error: any) {
+      if (
+        error.message?.includes("rejected") ||
+        error.toString().includes("User rejected")
+      ) {
+        console.log("Transaction cancelled by user");
+        return;
+      }
       console.error("Move Error:", error);
       alert("Move Failed!");
     } finally {
@@ -200,7 +220,14 @@ export function useGame() {
 
       console.log("Harvest Tx:", tx);
       await fetchPlayer();
-    } catch (error) {
+    } catch (error: any) {
+      if (
+        error.message?.includes("rejected") ||
+        error.toString().includes("User rejected")
+      ) {
+        console.log("Transaction cancelled by user");
+        return;
+      }
       console.error("Harvest Error:", error);
       alert("Harvest Failed");
     } finally {
@@ -233,7 +260,14 @@ export function useGame() {
       console.log("Craft Tx:", tx);
       await fetchPlayer();
       alert(`Crafted ${itemType} successfully!`);
-    } catch (error) {
+    } catch (error: any) {
+      if (
+        error.message?.includes("rejected") ||
+        error.toString().includes("User rejected")
+      ) {
+        console.log("Transaction cancelled by user");
+        return;
+      }
       console.error("Craft Error:", error);
       alert("Crafting Failed");
     } finally {
@@ -270,7 +304,14 @@ export function useGame() {
       console.log("Attack Tx:", tx);
       await fetchPlayer();
       alert("Attack Successful! Check logs/stats.");
-    } catch (error) {
+    } catch (error: any) {
+      if (
+        error.message?.includes("rejected") ||
+        error.toString().includes("User rejected")
+      ) {
+        console.log("Transaction cancelled by user");
+        return;
+      }
       console.error("Attack Error:", error);
       alert("Attack Failed!");
     } finally {
@@ -303,7 +344,14 @@ export function useGame() {
 
       console.log("Create Alliance Tx:", tx);
       await fetchPlayer();
-    } catch (error) {
+    } catch (error: any) {
+      if (
+        error.message?.includes("rejected") ||
+        error.toString().includes("User rejected")
+      ) {
+        console.log("Transaction cancelled by user");
+        return;
+      }
       console.error("Create Alliance Error:", error);
       alert("Failed to create alliance.");
     } finally {
@@ -366,7 +414,14 @@ export function useGame() {
 
       console.log("Deposit Tx:", tx);
       await fetchPlayer();
-    } catch (error) {
+    } catch (error: any) {
+      if (
+        error.message?.includes("rejected") ||
+        error.toString().includes("User rejected")
+      ) {
+        console.log("Transaction cancelled by user");
+        return;
+      }
       console.error("Deposit Error:", error);
       alert("Deposit Failed");
     } finally {
@@ -397,7 +452,14 @@ export function useGame() {
       console.log("Claim Quest Tx:", tx);
       await fetchPlayer();
       alert("Quest Claimed!");
-    } catch (error) {
+    } catch (error: any) {
+      if (
+        error.message?.includes("rejected") ||
+        error.toString().includes("User rejected")
+      ) {
+        console.log("Transaction cancelled by user");
+        return;
+      }
       console.error("Claim Quest Error:", error);
       alert("Failed to claim quest.");
     } finally {
@@ -428,7 +490,14 @@ export function useGame() {
       console.log("Mystery Box Tx:", tx);
       await fetchPlayer();
       alert("Mystery Box Opened!");
-    } catch (error) {
+    } catch (error: any) {
+      if (
+        error.message?.includes("rejected") ||
+        error.toString().includes("User rejected")
+      ) {
+        console.log("Transaction cancelled by user");
+        return;
+      }
       console.error("Mystery Box Error:", error);
       alert("Failed to buy mystery box.");
     } finally {

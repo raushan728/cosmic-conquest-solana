@@ -1,11 +1,13 @@
 "use client";
 
 import { useGame } from "../hooks/useGame";
+import { useGameSound } from "../hooks/useGameSound";
 import { useEffect, useState } from "react";
 import { Crosshair } from "lucide-react";
 
 export default function GameMap() {
   const { playerData, movePlayer, gameData, loading } = useGame();
+  const { playHover } = useGameSound();
   const width = gameData?.maxX || 10;
   const height = gameData?.maxY || 10;
   const GRID_SIZE = 10;
@@ -46,7 +48,12 @@ export default function GameMap() {
           return (
             <div
               key={`${x}-${y}`}
-              onClick={() => !isFog && handleCellClick(x, y)}
+              onClick={() => {
+                if (!isFog) {
+                  handleCellClick(x, y);
+                }
+              }}
+              onMouseEnter={() => playHover()}
               className={`
                                 aspect-square border rounded-sm flex items-center justify-center cursor-pointer transition-all duration-300
                                 ${

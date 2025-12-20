@@ -1,10 +1,12 @@
 "use client";
 
 import { useGame } from "../hooks/useGame";
+import { useGameSound } from "../hooks/useGameSound";
 import { Hammer, Rocket, Shield, Zap } from "lucide-react";
 
 export default function Shipyard() {
   const { playerData, craftItem, loading } = useGame();
+  const { playHover } = useGameSound();
 
   if (!playerData) return null;
 
@@ -63,8 +65,11 @@ export default function Shipyard() {
             </div>
 
             <button
-              onClick={() => craftItem(item.id as any)}
+              onClick={() => {
+                craftItem(item.id as any);
+              }}
               disabled={loading}
+              onMouseEnter={() => playHover()}
               className="w-full py-2 bg-purple-900/40 border border-purple-500/50 hover:bg-purple-800/50 text-purple-200 rounded text-sm font-bold uppercase"
             >
               CRAFT UPGRADE

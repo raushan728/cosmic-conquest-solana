@@ -1,6 +1,7 @@
 "use client";
 
 import { useGame } from "../hooks/useGame";
+import { useGameSound } from "../hooks/useGameSound";
 import { useState } from "react";
 import {
   Users,
@@ -9,8 +10,6 @@ import {
   PlusSquare,
   ArrowRight,
 } from "lucide-react";
-import { PublicKey } from "@solana/web3.js";
-
 export default function AllianceHQ() {
   const {
     playerData,
@@ -20,6 +19,7 @@ export default function AllianceHQ() {
     depositResources,
     loading,
   } = useGame();
+  const { playHover } = useGameSound();
 
   const [createName, setCreateName] = useState("");
   const [joinName, setJoinName] = useState("");
@@ -88,6 +88,7 @@ export default function AllianceHQ() {
                 depositResources(Number(depositWood), Number(depositIron))
               }
               disabled={loading || (!depositWood && !depositIron)}
+              onMouseEnter={() => playHover()}
               className="w-full py-2 bg-indigo-600 hover:bg-indigo-500 rounded text-white font-bold text-xs uppercase"
             >
               Confirm Transfer
@@ -111,6 +112,7 @@ export default function AllianceHQ() {
             <button
               onClick={() => createAlliance(createName)}
               disabled={loading || !createName}
+              onMouseEnter={() => playHover()}
               className="w-full py-2 bg-green-600 hover:bg-green-500 rounded text-white font-bold text-xs uppercase"
             >
               Create Alliance
@@ -131,6 +133,7 @@ export default function AllianceHQ() {
             <button
               onClick={() => joinAlliance(joinName)}
               disabled={loading || !joinName}
+              onMouseEnter={() => playHover()}
               className="w-full py-2 bg-blue-600 hover:bg-blue-500 rounded text-white font-bold text-xs uppercase"
             >
               Join Alliance

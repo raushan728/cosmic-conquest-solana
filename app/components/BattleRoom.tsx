@@ -1,11 +1,13 @@
 "use client";
 
 import { useGame } from "../hooks/useGame";
+import { useGameSound } from "../hooks/useGameSound";
 import { useState } from "react";
 import { Sword, Target, Radar, AlertTriangle } from "lucide-react";
 
 export default function BattleRoom() {
   const { attackPlayer, loading, playerData } = useGame();
+  const { playHover } = useGameSound();
   const [targetKey, setTargetKey] = useState("");
 
   if (!playerData) return null;
@@ -34,8 +36,11 @@ export default function BattleRoom() {
           </div>
 
           <button
-            onClick={() => attackPlayer(targetKey)}
+            onClick={() => {
+              attackPlayer(targetKey);
+            }}
             disabled={loading || !targetKey}
+            onMouseEnter={() => playHover()}
             className="w-full py-4 bg-red-600 hover:bg-red-500 text-white font-bold uppercase tracking-[0.2em] rounded shadow-[0_0_20px_rgba(220,38,38,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
           >
             <CrosshairIcon />
