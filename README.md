@@ -1,6 +1,9 @@
 # Cosmic Conquest: Fully On-Chain RTS
 
+
 **Live Demo:** [https://cosmic-conquest-solana.vercel.app/](https://cosmic-conquest-solana.vercel.app/)
+
+
 
 > [!IMPORTANT] > **Demo Availability Notice:** The live demo link provided above is hosted on a devnet environment and may be taken offline or become inaccessible at any time without prior notice.
 
@@ -16,18 +19,15 @@
 - [System Architecture](#system-architecture)
   - [Account Structure & Relationships](#account-structure--relationships)
 - [Prerequisites](#prerequisites)
-  - [1. Operating System](#31-operating-system)
-  - [2. Install Rust](#32-install-rust)
-  - [3. Install Solana CLI](#33-install-solana-cli)
-  - [4. Install Node.js & Yarn](#34-install-nodejs--yarn)
-  - [5. Install Anchor Framework](#35-install-anchor-framework)
+- [Getting Started](#getting-started)
+- [Configuration](#configuration)
 - [Installation Guide](#installation-guide)
   - [Step 1: Clone the Repository](#step-1-clone-the-repository)
   - [Step 2: Project Structure Overview](#step-2-project-structure-overview)
   - [Step 3: Install Backend Dependencies](#step-3-install-backend-dependencies)
   - [Step 4: Install Frontend Dependencies](#step-4-install-frontend-dependencies)
   - [Step 5: Run the Development Server](#step-5-run-the-development-server)
-- [Configuration Guide](#configuration-guide)
+- [Configuration](#configuration)
   - [1. Get Your Program ID](#51-get-your-program-id)
   - [2. Update the Smart Contract (lib.rs)](#52-update-the-smart-contract-lib-rs)
   - [3. Update Anchor.toml](#53-update-anchortoml)
@@ -94,135 +94,56 @@ We utilize **Program Derived Addresses (PDAs)** to enforce deterministic address
 
 ## Prerequisites
 
-Before starting, ensure your development environment is set up with the following tools.
+Ensure you have the following installed:
 
-### 3.1. Operating System
+- **Node.js**: v20+ recommended ([Download](https://nodejs.org/))
+- **Rust & Cargo**: Latest stable version ([Download](https://rustup.rs/))
+- **Solana CLI**: v1.18+ ([Guide](https://docs.solanalabs.com/cli/install))
+- **Anchor Framework**: Latest version ([Guide](https://www.anchor-lang.com/docs/installation))
+- **Yarn**: (`corepack enable` or `npm i -g yarn`)
 
-- Linux (Ubuntu/Debian recommended) OR macOS.
-- Windows users are strictly advised to use **WSL2**.
+## Getting Started
 
-### 3.2. Install Rust
+### Installation
 
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustc --version
-```
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/raushan728/cosmic-conquest-solana.git
+   cd cosmic-conquest-solana
+   ```
 
-### 3.3. Install Solana CLI
+2. **Install Dependencies**
+   ```bash
+   yarn install        # Backend dependencies
+   cd app && npm install # Frontend dependencies
+   ```
 
-```bash
-sh -c "$(curl -sSfL https://release.solana.com/v1.18.0/install)"
-solana --version
-```
-
-### 3.4. Install Node.js & Yarn
-
-```bash
-node -v  # v20+ recommended
-corepack enable
-yarn -v
-```
-
-### 3.5. Install Anchor Framework
-
-```bash
-cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
-avm install latest
-avm use latest
-anchor --version
-```
+3. **Run Development Server**
+   ```bash
+   cd app
+   npm run dev
+   ```
+   _The game will launch at `http://localhost:3000`._
 
 ---
 
-## Installation Guide
-
-Follow these steps to set up the project locally.
-
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/raushan728/cosmic-conquest-solana.git
-cd cosmic-conquest-solana
-```
-
-### Step 2: Project Structure Overview
-
-- `program/`: Smart contract logic (Rust/Anchor).
-- `app/`: Frontend game client (Next.js 16).
-- `tests/`: TypeScript integration tests.
-- `Anchor.toml`: Workspace configuration.
-
-### Step 3: Install Backend Dependencies
-
-```bash
-# From the root directory
-yarn install
-```
-
-### Step 4: Install Frontend Dependencies
-
-```bash
-cd app
-npm install
-cd ..
-```
-
-### Step 5: Run the Development Server
-
-Start the client application.
-
-```bash
-cd app
-npm run dev
-```
-
-_The game will launch at `http://localhost:3000`._
-
----
-
-## Configuration Guide
+## Configuration
 
 To deploy your own instance of the Cosmic Conquest universe:
 
-### 5.1. Get Your Program ID
-
-Generate a new keypair for your program:
-
-```bash
-anchor keys sync
-```
-
-### 5.2. Update the Smart Contract (lib.rs)
-
-If not auto-updated, manually paste the new ID into `program/src/lib.rs`:
-
-```rust
-declare_id!("YOUR_NEW_PROGRAM_ID");
-```
-
-### 5.3. Update Anchor.toml
-
-Ensure the `[programs.devnet]` section matches your new ID.
-
-### 5.4. Re-build the Program
-
-```bash
-anchor build
-```
-
-### 5.5. Deploy the Program
-
-Deploy the compiled bytecode to the Solana Devnet.
-
-```bash
-anchor deploy
-```
-
-### 5.6. Update Frontend Constants
-
-Copy the new `target/idl/cosmic_conquest.json` to your frontend's `utils` folder and update `constants.ts` with the new Program ID.
+1. **Get Program ID**: Run `anchor keys sync` to generate a new keypair.
+2. **Update Contract**: Paste the new ID into `program/src/lib.rs` if not auto-updated.
+3. **Update Config**: Ensure `[programs.devnet]` in `Anchor.toml` matches your new ID.
+4. **Deploy**:
+   ```bash
+   anchor build
+   anchor deploy
+   ```
+5. **Update Client**: Copy `target/idl/cosmic_conquest.json` to `app/utils/` and update `constants.ts` with the new Program ID.
 
 ---
+
+
 
 ## Wallet & Game Setup
 
@@ -253,7 +174,7 @@ Navigate the 10x10 sector grid. Fog of War hides distant sectors.
 ### Phase 3: Shipyard Refit
 
 Exchange harvested resources for permanent stat upgrades (Hull, Cannons, Engines).
-![Shipyard Interface](demo/image%20copy%203.png)
+![Shipyard Interface](demo/image.png)
 
 ### Phase 4: PvP Battle Room
 
@@ -263,7 +184,8 @@ Engage in direct wallet-to-wallet combat. Scan for hostile signatures and attack
 ### Phase 5: Alliance HQ
 
 Pool resources with other players. Create a shared treasury to dominate the leaderboard.
-![Alliance System](demo/image%20copy%204.png)
+
+<!-- ![Alliance System](demo/image%20copy%204.png) (Duplicate of Shipyard image, removed temporarily) -->
 
 ### Phase 6: Quest Ops
 
