@@ -67,6 +67,8 @@ pub mod game_engine {
         }
         player.gold -= 5;
         let clock = Clock::get()?;
+        // Deriving randomness from clock and player state is predictable to validators,
+        // but chosen here to avoid the complexity of an oracle for a casual project.
         let seed = (clock.unix_timestamp as u64)
             .wrapping_add(player.xp)
             .wrapping_add(player.wood);
@@ -147,6 +149,7 @@ pub mod game_engine {
         if new_x > game.max_x || new_y > game.max_y {
             return err!(GameError::OutOfBounds);
         }
+        // Manhattan distance used instead of Euclidean (sqrt) to save compute units.
         let dx = (player.x as i64 - new_x as i64).abs();
         let dy = (player.y as i64 - new_y as i64).abs();
         let distance = dx + dy;
@@ -249,6 +252,7 @@ pub mod game_engine {
             defender.health = 100;
             defender.level = 1;
             defender.xp = 0;
+            // Scatter the defeated player to prevent immediate spawn-camping.
             defender.x = (pseudo_random % 100) as u32;
             defender.y = ((pseudo_random >> 2) % 100) as u32;
 
@@ -483,6 +487,7 @@ pub struct CreateAlliance<'info> {
     #[account(
         init,
         payer = signer,
+        // 8 (discriminator) + 32 (pubkey) + 24 (4-byte string prefix + 20-byte max name) + 24 (3x u64)
         space = 8 + 32 + (4 + 20) + 8 + 8 + 8,
         seeds = [b"alliance", name.as_bytes()],
         bump
@@ -553,6 +558,7 @@ pub struct InitPlayer<'info> {
     #[account(
         init,
         payer = signer,
+        // 8 (discriminator) + 32 (owner pubkey) + 24 (username string max) + 32 (alliance pubkey) + 100 (player stats + resources padding)
         space = 8 + 32 + 24 + 32 + 100,
         seeds = [b"player", game.key().as_ref(), signer.key().as_ref()],
         bump
